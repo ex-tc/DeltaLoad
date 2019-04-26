@@ -1,0 +1,2393 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/30/2013 2:18:41 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ANDREASYBNB001"
+  DTS:CreatorName="AndreasYBNB001\Andreasb"
+  DTS:DTSID="{9EEDC611-CA51-438F-93C5-C49776D36BCF}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="7177"
+  DTS:ObjectName="FNV1a"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{BDEB74A2-AD51-4E19-8A2E-FC395C434D5C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{24D74170-6C6D-40D7-97C8-B7F6B04E53E3}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\Conditional Split"
+              componentClassID="{7F88F654-4E20-4D14-84F4-AF9C925D3087}"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[DeltaHash]"
+                      cachedDataType="i8"
+                      cachedName="DeltaHash"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[DeltaHashExisting]"
+                      cachedDataType="i8"
+                      cachedName="DeltaHashExisting"
+                      lineageId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[DeltaHashExisting]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Changed]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Changed"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]} != #{Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[DeltaHashExisting]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">DeltaHash != DeltaHashExisting</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\drvHashSrc"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="drvHashSrc"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input].Columns[SourceKey]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SourceKey"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input].Columns[CountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryCode"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryName"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="State"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input].Columns[Junk]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Junk"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[Junk]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[BusinessKeyHashSrc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="199"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[BusinessKeyHashSrc]"
+                      name="BusinessKeyHashSrc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_STR,199,1252)#{Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_STR,199,1252)SourceKey</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[DeltaHashSrc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="1638"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[DeltaHashSrc]"
+                      name="DeltaHashSrc"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACENULL](#{Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[Junk]},"") + [REPLACENULL](#{Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]},"") + [REPLACENULL](#{Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]},"") + [REPLACENULL](#{Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]},"")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACENULL(Junk,"") + REPLACENULL(CountryCode,"") + REPLACENULL(CountryName,"") + REPLACENULL(State,"")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\DST_DimGeography"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST_DimGeography"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimGeography]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DST_DimGeography.Connections[OleDbConnection]"
+                  connectionManagerID="{584B1065-9F3C-4A21-985A-647B7648DAD1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FNV1aDestination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[SourceKey]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SourceKey"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[CountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryCode"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryName"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[DeltaHash]"
+                      cachedDataType="i8"
+                      cachedName="DeltaHash"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[DeltaHash]"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].Columns[BusinessKeyHash]"
+                      cachedDataType="i8"
+                      cachedName="BusinessKeyHash"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[BusinessKeyHash]"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[GeographyID]"
+                      dataType="i4"
+                      name="GeographyID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      dataType="wstr"
+                      length="100"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[BusinessKeyHash]"
+                      dataType="i8"
+                      name="BusinessKeyHash" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input].ExternalColumns[DeltaHash]"
+                      dataType="i8"
+                      name="DeltaHash" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DST_DimGeography.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DST_DimGeography.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DST_DimGeography.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DST_DimGeography.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\DST_DimGeographyStage"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST_DimGeographyStage"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimGeographyStage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\DST_DimGeographyStage.Connections[OleDbConnection]"
+                  connectionManagerID="{584B1065-9F3C-4A21-985A-647B7648DAD1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FNV1aDestination]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[SourceKey]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SourceKey"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[CountryCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryCode"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[CountryName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="CountryName"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[State]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="State"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[DeltaHash]"
+                      cachedDataType="i8"
+                      cachedName="DeltaHash"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[DeltaHash]"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].Columns[BusinessKeyHash]"
+                      cachedDataType="i8"
+                      cachedName="BusinessKeyHash"
+                      externalMetadataColumnId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[BusinessKeyHash]"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[SourceKey]"
+                      dataType="wstr"
+                      length="100"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[BusinessKeyHash]"
+                      dataType="i8"
+                      name="BusinessKeyHash" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input].ExternalColumns[DeltaHash]"
+                      dataType="i8"
+                      name="DeltaHash" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\DST_DimGeographyStage.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DST_DimGeographyStage.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\DST_DimGeographyStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\DST_DimGeographyStage.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\LKUP_BusinessKeyHash"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKUP_BusinessKeyHash"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  [GeographyID]
+      
+      ,[BusinessKeyHash]
+      ,[DeltaHash]
+  FROM [dbo].[DimGeography]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT  [GeographyID]
+      
+      ,[BusinessKeyHash]
+      ,[DeltaHash]
+  FROM [dbo].[DimGeography]) [refTable]
+where [refTable].[BusinessKeyHash] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="GeographyID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BusinessKeyHash" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DeltaHash" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Connections[OleDbConnection]"
+                  connectionManagerID="{584B1065-9F3C-4A21-985A-647B7648DAD1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[FNV1aDestination]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input].Columns[BusinessKeyHash]"
+                      cachedDataType="i8"
+                      cachedName="BusinessKeyHash"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">BusinessKeyHash</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[BusinessKeyHashExisting]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[BusinessKeyHashExisting]"
+                      name="BusinessKeyHashExisting"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">BusinessKeyHash</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[DeltaHashExisting]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output].Columns[DeltaHashExisting]"
+                      name="DeltaHashExisting"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DeltaHash</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\scrFNV1a 1"
+              componentClassID="{874F7595-FB5F-40FF-96AF-FBFF8250E3EF}"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;8"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="scrFNV1a 1"
+              version="8">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using Microsoft.SqlServer.Server;
+using System.Text;
+
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+    /// 
+
+    readonly ulong prime64 = 1099511628211;
+    readonly ulong offset64 = 0xcbf29ce484222325;
+    readonly uint prime32 = 16777619;
+    readonly uint offset32 = 2166136261;
+    public override void PreExecute()
+    {
+        base.PreExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called after all the rows have passed through this component.
+    ///
+    /// You can delete this method if you don't need to do anything here.
+    /// </summary>
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+         * Add your code here
+         */
+    }
+
+    /// <summary>
+    /// This method is called once for every row that passes through the component from Input0.
+    ///
+    /// Example of reading a value from a column in the the row:
+    ///  string zipCode = Row.ZipCode
+    ///
+    /// Example of writing a value to a column in the row:
+    ///  Row.ZipCode = zipCode
+    /// </summary>
+    /// <param name="Row">The row that is currently passing through the component</param>
+    public override void HashSource_ProcessInputRow(HashSourceBuffer Row)
+    {
+        /*
+         * Add your code here
+         */
+
+        long outBiz;
+        long outDelta;
+        outBiz = 0;
+        outDelta = 0;
+        try
+        {
+            
+            if (Row.BusinessKeyHashSrc_IsNull || Row.DeltaHashSrc_IsNull)
+            {
+                throw new System.Exception("Hash cannot be null");
+            }
+
+            //ComponentMetaData.FireInformation(0, "FNV1a", "Using " + Row.BusinessKeyHashSrc, "", 0, result);
+            outBiz  = HashFNV1a_64(Row.BusinessKeyHashSrc);
+            //OutputHashBuffer.BusinessKeyHash = outBiz;
+            Row.BusinessKeyHash = outBiz;
+            //ComponentMetaData.FireInformation(0, "FNV1a", "Produces hash " + outBiz.ToString(), "", 0, result);
+
+            //ComponentMetaData.FireInformation(0, "FNV1a", "Using " + Row.DeltaHashSrc, "", 0, result);
+            outDelta = HashFNV1a_64(Row.DeltaHashSrc);
+            //OutputHashBuffer.DeltaHash = outDelta;
+            Row.DeltaHash = outDelta;
+            //ComponentMetaData.FireInformation(0, "FNV1a", "Produces hash " + outDelta.ToString(), "", 0, result);
+                    }
+        catch (System.Exception ex)
+        {
+            bool result = false;
+            ComponentMetaData.FireError(10, "Error at " + Row.BusinessKeyHashSrc + " giving biz hey hash " + outBiz.ToString() + " and delta hash " + Row.DeltaHashSrc + " giving "  + outDelta.ToString(), ex.Message, "", 0, out result);
+            throw ex;
+
+        }
+
+        
+    }
+
+
+    private  long HashFNV1a_64(string value)
+    {
+        ulong hash = offset64;
+
+        byte[] bytes = Encoding.UTF8.GetBytes(value.ToLower());
+
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            hash = (hash ^ bytes[i]) * prime64;
+        }
+        return (long)(hash - long.MaxValue);
+
+    }
+
+    private  int HashFNV1a_32(string value)
+    {
+        uint hash = offset32;
+
+        byte[] bytes = Encoding.UTF8.GetBytes(value.ToLower());
+
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            hash = (hash ^ bytes[i]) * prime32;
+        }
+        return (int)(hash - int.MaxValue);
+
+    }
+
+    private  short HashFNV1a_16(string value)
+    {
+        uint MASK_16 = (((uint)1 << 16) - 1);    /* i.e., (u_int32_t)0xffff */
+        uint hash = offset32;
+
+        byte[] bytes = Encoding.UTF8.GetBytes(value.ToLower());
+
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            hash = (hash ^ bytes[i]) * prime32;
+        }
+
+        hash = (hash >> 16) ^ (hash & MASK_16);
+
+        return (short)(hash - short.MaxValue);
+
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class HashSourceBuffer: ScriptBuffer
+
+{
+    public HashSourceBuffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String DeltaHashSrc
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool DeltaHashSrc_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String BusinessKeyHashSrc
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool BusinessKeyHashSrc_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public Int64 DeltaHash
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool DeltaHash_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int64 BusinessKeyHash
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool BusinessKeyHash_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"HashSource", StringComparison.Ordinal))
+        {
+            HashSource_ProcessInput(new HashSourceBuffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void HashSource_ProcessInput(HashSourceBuffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            HashSource_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void HashSource_ProcessInputRow(HashSourceBuffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_8e9a9663d96e4598914eb85a48ca537b.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{A20B8EEE-904C-4D3D-813C-960D9DEBA734}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>SC_8e9a9663d96e4598914eb85a48ca537b</RootNamespace><AssemblyName>SC_A988D726235E4F54BEE015CF5E0DDFA1</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.TxScript, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.PipelineHost, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" /><Compile Include="main.cs" /><Compile Include="BufferWrapper.cs" /><Compile Include="ComponentWrapper.cs" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><!-- This section defines VSTA properties that describe the host-changable project properties. --><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" /><Host Name="ScriptComponent" IconIndex="0" /><ProjectClient><HostIdentifier>SSIS_SC110</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Settings.get_Default():SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Sett" +
+    "ings")]
+
+namespace SC_8e9a9663d96e4598914eb85a48ca537b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_8e9a9663d96e4598914eb85a48ca537b</msb:CodeName>
+		<msb:DisplayName>SC_8e9a9663d96e4598914eb85a48ca537b</msb:DisplayName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:ProjectId>{06737FBC-2197-4F9C-BC5E-0712C3D110B8}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_8e9a9663d96e4598914eb85a48ca537b.csproj"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_8e9a9663d96e4598914eb85a48ca537b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_8e9a9663d96e4598914eb85a48ca537b")]
+[assembly: AssemblyCopyright("Copyright @  2013")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_8e9a9663d96e4598914eb85a48ca537b.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_8e9a9663d96e4598914eb85a48ca537b.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_A988D726235E4F54BEE015CF5E0DDFA1.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDABdtSVIAAAAAAAAAAOAAAiELAQsAABoAAAAIAAAAAAAAvjgA
+AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACAAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAHA4AABLAAAAAEAAAAgEAAAAAAAAAAAAAAAAAAAA
+AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAxBgAAAAgAAAAGgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAAgEAAAAQAAAAAYAAAAcAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAIgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACg
+OAAAAAAAAEgAAAACAAUAuCQAALgTAAABAAAAAAAAAAAkAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAH4CKA0AAAoCAnMXAAAGfQEAAAQCAnMYAAAGfQIAAAQqkgRy
+AQAAcBpvDgAACiwVAgUCAygPAAAKDgRzDAAABm8DAAAGKkorBwIDbwQAAAYDbxUAAAYt8SoGKh4C
+KBEAAAoqHgIoEgAACioAABswBwDJAAAAAQAAERZqChZqCwNvEAAABi0IA28OAAAGLAtyFwAAcHMT
+AAAKegIDbw8AAAYoCAAABgoDBm8TAAAGAgNvDQAABigIAAAGCwMHbxEAAAbefQwWDQIoFAAACh8K
+Ho0VAAABEwQRBBZyPwAAcKIRBBcDbw8AAAaiEQQYclMAAHCiEQQZEgAoFQAACqIRBBpyfwAAcKIR
+BBsDbw0AAAaiEQQccqEAAHCiEQQdEgEoFQAACqIRBCgWAAAKCG8XAAAKcrMAAHAWEgNvGAAACgh6
+KgAAAAEQAAAAAAYARUsAfRgAAAETMAMAQAAAAAIAABECewQAAAQKKBkAAAoDbxoAAApvGwAACgsW
+DCsSBgcIkW5hAnsDAAAEWgoIF1gMCAeOaTLoBiH/////////f1kqEzADADsAAAADAAARAnsGAAAE
+CigZAAAKA28aAAAKbxsAAAoLFgwrEQYHCJFhAnsFAAAEWgoIF1gMCAeOaTLpBiD///9/WSoAEzAD
+AE0AAAAEAAARIP//AAAKAnsGAAAECygZAAAKA28aAAAKbxsAAAoMFg0rEQcICZFhAnsFAAAEWgsJ
+F1gNCQiOaTLpBx8QZAcGX2ELB24g/38AAGpZaCruAiGzAQAAAAEAAH0DAAAEAiElIyKE5Jzyy30E
+AAAEAiCTAQABfQUAAAQCIMWdHIF9BgAABAIoAQAABioqAgMEBSgcAAAKKlICex0AAAoCex4AAAoW
+lG8fAAAKKiICFiggAAAKKlICex0AAAoCex4AAAoXlG8fAAAKKiICFyggAAAKKjoCGAOMGgAAASgh
+AAAKKloDLAgCGCgiAAAKKnK1AABwcyMAAAp6OgIZA4waAAABKCEAAAoqWgMsCAIZKCIAAAoqcrUA
+AHBzIwAACnoeAigkAAAKKh4CKCUAAAoqOgIoJgAACgIDfQcAAAQqOgIoJgAACgIDfQgAAAQqHgIo
+JgAACioAABMwAgAtAAAABQAAEX4JAAAELSByUgEAcNAHAAACKCgAAApvKQAACnMqAAAKCgaACQAA
+BH4JAAAEKhp+CgAABCoeAoAKAAAEKhp+CwAABCoucx4AAAaACwAABCoeAigtAAAKKgAAAAAAtAAA
+AM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwg
+VmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2
+MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQ
+QURQQURQtAAAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAJwGAAAjfgAACAcA
+ANwIAAAjU3RyaW5ncwAAAADkDwAAxAEAACNVUwCoEQAAEAAAACNHVUlEAAAAuBEAAAACAAAjQmxv
+YgAAAAAAAAACAAABVxWiAQkBAAAA+iUzABYAAAEAAAAjAAAACAAAAAsAAAAfAAAAFAAAAC0AAAAP
+AAAABQAAAAMAAAALAAAADAAAAAEAAAAFAAAAAQAAAAAACgABAAAAAAAGAPIA0QAGAAIB0QAKAB8B
+GAEOADsBJgESAHoB0QAGAIkB0QAKAKwDmwMKAN0DyAMKALYEnAQKAOEEzwQKAPgEzwQKABUFzwQK
+ADQFzwQKAE0FzwQKAGYFzwQKAIEFzwQKAJwFzwQKALUFzwQKAO4FzgUKAA4GzgUKAFAGGAEKAFcG
+GAEGAIAG0QAKAKcGGAEWAP4G1QYKAC0HGAEKAGUHWQcKAKoHGAEKANcHxAcKAPQHGAEKAPkHGAEK
+AB0IzwQOAEkIMwgOAGIIMwgKAHcIzgUAAAAAAQAAAAAAAQABAAEAEAAyAAAABQABAAEAAQAQAEAA
+AAAIAAMABQABABAASwAAAAkABwAMAAEAEABcAAAADQAHABcAAQAQAGgAAAANAAgAGAAAABAAcgB8
+AA0ACQAZAAABEACrAHwAEQALAB0ABgBcABMABgBoABcAIQDXAS8AIQDfAS8AIQDoATIAIQDwATIA
+AQCLA2wAAQCLA2wAEQC8A3YAEQDpA3oAEQAtBJgAUCAAAAAAhhhTARsAAQBwIAAAAADGAJcBHwAB
+AJUgAAAAAMYBpAEpAAUAqCAAAAAAxgG8ASkABgCqIAAAAADGAPkBGwAHALIgAAAAAMYABAIbAAcA
+vCAAAAAAxgC8ASkABwCkIQAAAACBABACNQAIAPAhAAAAAIEAHQI6AAkAOCIAAAAAgQAqAj8ACgCR
+IgAAAACGGFMBGwALAM0iAAAAAIYYUwFEAAsA2CIAAAAAhgg3Ak4ADgDtIgAAAACGCEgCUgAOAPYi
+AAAAAIYIYAJOAA4ACyMAAAAAhgh3AlIADgAUIwAAAACGCJUCVgAOACMjAAAAAIYIowJbAA8AOiMA
+AAAAhgi4AlYAEABJIwAAAACGCMwCWwARAGAjAAAAAIYA5wJSABIAaCMAAAAAhgDvAlIAEgBwIwAA
+AACGGFMBcAASAH8jAAAAAIYYUwFwABMAjiMAAAAAgxhTARsAFACYIwAAAACTCPkDfgAUANEjAAAA
+AJMIDQSDABQA2CMAAAAAkwgZBIgAFADgIwAAAACWCD0EnAAVAPMjAAAAAIYYUwEbABUA5yMAAAAA
+kRiSCEUBFQAAAAEAUQQAAAIAWQQAAAMAYwQAAAQAagQAAAEAYwQAAAEAdAQAAAEAdAQAAAEAeAQA
+AAEAeAQAAAEAeAQAAAEAYwQAAAIAfgQAAAMAagQAAAEAeAQAAAEAeAQAAAEAeAQAAAEAeAQAAAEA
+kgQAAAEAkgQAAAEAeARJAFMBpgBRAFMBpgBZAFMBpgBhAFMBpgBpAFMBpgBxAFMBpgB5AFMBpgCB
+AFMBpgCJAFMBpgCRAFMBpgCZAFMBqwChAFMBGwAJAFMBGwCpAGgGsAAJAG8GtwC5AFMBGwAJAPkB
+GwAJAAQCGwDBAFMBpgAJABcHwgDRADMHTgCpADwHxwDBAEMHTgDJAE8HzQDZAG4H4gCpAHcHTgDZ
+AH8H5wARAFMBRAARAGMEAwERAH4EBwEpAIgHCwERAJIHEAERAJkHFQERAKIHqwDhAFMBpgARAOcC
+UgARAO8CUgAZAFMBGwDpAFMBGwDxAAsIGwHxACYIIgE5AFMBKAEJAVMBNQEZAVMBGwAhAFMBGwAu
+ABsAugEuAGMA4AEuAAsASQEuABMAkQEuACMAugEuACsAugEuADMAkQEuADsAwAEuAEMAugEuAFsA
+1wFjAIMAvQDjADsBvQApAVsBPAFJAVsBPAFhAWMBvQDYAO0A9AD7ADABBAABAAcACQAIAAsAAAD7
+AmAAAAAIA2QAAAAcA2AAAAAvA2QAAABJA2gAAABTA2QAAABkA2gAAAB0A2QAAACsA44AAAAlBJMA
+AABJBKEAAgANAAMAAgAOAAUAAgAPAAcAAgAQAAkAAQARAAsAAQASAA0AAQATAA8AAQAUABEAAgAa
+ABMAAgAbABUAAQAcABUAAgAdABcABIAAAAEAAACdExtlAAAAAAAALAYAAAsAAAAAAAAAAAAAAAEA
+tAAAAAAABAAAAAAAAAAAAAAACgAPAQAAAAAEAAAAAAAAAAAAAAAKABgBAAAAAAsAAAAAAAAAAAAA
+AAEAWQEAAAAACwAAAAAAAAAAAAAAAQCxBgAAAAAAAAAAAQAAAJkIAAAAAAA8TW9kdWxlPgBTQ19B
+OTg4RDcyNjIzNUU0RjU0QkVFMDE1Q0Y1RTBEREZBMS5kbGwAVXNlckNvbXBvbmVudABTY3JpcHRN
+YWluAEhhc2hTb3VyY2VCdWZmZXIAQ29ubmVjdGlvbnMAVmFyaWFibGVzAFJlc291cmNlcwBTQ184
+ZTlhOTY2M2Q5NmU0NTk4OTE0ZWI4NWE0OGNhNTM3Yi5Qcm9wZXJ0aWVzAFNldHRpbmdzAE1pY3Jv
+c29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUA
+U2NyaXB0Q29tcG9uZW50AFNjcmlwdEJ1ZmZlcgBtc2NvcmxpYgBTeXN0ZW0AT2JqZWN0AFN5c3Rl
+bS5Db25maWd1cmF0aW9uAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAC5jdG9yAE1pY3Jvc29mdC5T
+cWxTZXJ2ZXIuUGlwZWxpbmVIb3N0AFBpcGVsaW5lQnVmZmVyAE91dHB1dE5hbWVNYXAAUHJvY2Vz
+c0lucHV0AEhhc2hTb3VyY2VfUHJvY2Vzc0lucHV0AEhhc2hTb3VyY2VfUHJvY2Vzc0lucHV0Um93
+AHByaW1lNjQAb2Zmc2V0NjQAcHJpbWUzMgBvZmZzZXQzMgBQcmVFeGVjdXRlAFBvc3RFeGVjdXRl
+AEhhc2hGTlYxYV82NABIYXNoRk5WMWFfMzIASGFzaEZOVjFhXzE2AGdldF9EZWx0YUhhc2hTcmMA
+Z2V0X0RlbHRhSGFzaFNyY19Jc051bGwAZ2V0X0J1c2luZXNzS2V5SGFzaFNyYwBnZXRfQnVzaW5l
+c3NLZXlIYXNoU3JjX0lzTnVsbABzZXRfRGVsdGFIYXNoAHNldF9EZWx0YUhhc2hfSXNOdWxsAHNl
+dF9CdXNpbmVzc0tleUhhc2gAc2V0X0J1c2luZXNzS2V5SGFzaF9Jc051bGwATmV4dFJvdwBFbmRP
+ZlJvd3NldABEZWx0YUhhc2hTcmMARGVsdGFIYXNoU3JjX0lzTnVsbABCdXNpbmVzc0tleUhhc2hT
+cmMAQnVzaW5lc3NLZXlIYXNoU3JjX0lzTnVsbABEZWx0YUhhc2gARGVsdGFIYXNoX0lzTnVsbABC
+dXNpbmVzc0tleUhhc2gAQnVzaW5lc3NLZXlIYXNoX0lzTnVsbABQYXJlbnRDb21wb25lbnQAU3lz
+dGVtLlJlc291cmNlcwBSZXNvdXJjZU1hbmFnZXIAcmVzb3VyY2VNYW4AU3lzdGVtLkdsb2JhbGl6
+YXRpb24AQ3VsdHVyZUluZm8AcmVzb3VyY2VDdWx0dXJlAGdldF9SZXNvdXJjZU1hbmFnZXIAZ2V0
+X0N1bHR1cmUAc2V0X0N1bHR1cmUAQ3VsdHVyZQBkZWZhdWx0SW5zdGFuY2UAZ2V0X0RlZmF1bHQA
+RGVmYXVsdABJbnB1dElEAElucHV0TmFtZQBCdWZmZXIAT3V0cHV0TWFwAFJvdwB2YWx1ZQBCdWZm
+ZXJDb2x1bW5JbmRleGVzAENvbXBvbmVudABTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5nAFRhcmdl
+dEZyYW1ld29ya0F0dHJpYnV0ZQBTeXN0ZW0uUmVmbGVjdGlvbgBBc3NlbWJseVRpdGxlQXR0cmli
+dXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0
+cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUA
+QXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAQXNz
+ZW1ibHlDdWx0dXJlQXR0cmlidXRlAEFzc2VtYmx5VmVyc2lvbkF0dHJpYnV0ZQBTeXN0ZW0uUnVu
+dGltZS5Db21waWxlclNlcnZpY2VzAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAUnVu
+dGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAU0NfQTk4OEQ3MjYyMzVFNEY1NEJFRTAxNUNGNUUw
+RERGQTEAU3RyaW5nAFN0cmluZ0NvbXBhcmlzb24ARXF1YWxzAEdldENvbHVtbkluZGV4ZXMAU1NJ
+U1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUARXhjZXB0aW9uAE1pY3Jvc29mdC5T
+cWxTZXJ2ZXIuRFRTUGlwZWxpbmVXcmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBpcGVsaW5l
+LldyYXBwZXIASURUU0NvbXBvbmVudE1ldGFEYXRhMTAwAGdldF9Db21wb25lbnRNZXRhRGF0YQBJ
+bnQ2NABUb1N0cmluZwBDb25jYXQAZ2V0X01lc3NhZ2UARmlyZUVycm9yAFN5c3RlbS5UZXh0AEVu
+Y29kaW5nAGdldF9VVEY4AFRvTG93ZXIAR2V0Qnl0ZXMAR2V0U3RyaW5nAElzTnVsbABzZXRfSXRl
+bQBTZXROdWxsAEludmFsaWRPcGVyYXRpb25FeGNlcHRpb24AU3lzdGVtLkRpYWdub3N0aWNzAERl
+YnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUAVHlwZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBl
+RnJvbUhhbmRsZQBBc3NlbWJseQBnZXRfQXNzZW1ibHkAU3lzdGVtLkNvbXBvbmVudE1vZGVsAEVk
+aXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVTdGF0ZQBDb21waWxlckdlbmVy
+YXRlZEF0dHJpYnV0ZQAuY2N0b3IAU0NfOGU5YTk2NjNkOTZlNDU5ODkxNGViODVhNDhjYTUzN2Iu
+UHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAAAVSABhAHMAaABTAG8AdQByAGMAZQAAJ0gA
+YQBzAGgAIABjAGEAbgBuAG8AdAAgAGIAZQAgAG4AdQBsAGwAABNFAHIAcgBvAHIAIABhAHQAIAAA
+KyAAZwBpAHYAaQBuAGcAIABiAGkAegAgAGgAZQB5ACAAaABhAHMAaAAgAAAhIABhAG4AZAAgAGQA
+ZQBsAHQAYQAgAGgAYQBzAGgAIAAAESAAZwBpAHYAaQBuAGcAIAAAAQCAm0kAcwBOAHUAbABsACAA
+cAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABiAGUAIABzAGUAdAAgAHQAbwAgAEYAYQBs
+AHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwAdQBlACAAdABvACAAdABoAGUAIABjAG8A
+bAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAcVMAQwBfADgAZQA5AGEAOQA2ADYAMwBkADkANgBl
+ADQANQA5ADgAOQAxADQAZQBiADgANQBhADQAOABjAGEANQAzADcAYgAuAFAAcgBvAHAAZQByAHQA
+aQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAXiu5UYAYU0SFveUzZCpORgAIiYRdzYCAzJEIt3pc
+Vhk04IkDBhIUAwYSGAMgAAEJIAQBCA4SFRIZBSABARIQAgYLAgYJBCABCg4EIAEIDgQgAQYOCSAD
+ARIVHQgSGQMgAA4DIAACBCABAQoEIAEBAgMoAA4DKAACAygACgMGEgUFIAEBEgUDBhIdAwYSIQQA
+ABIdBAAAEiEFAAEBEiEECAASHQQIABIhAwYSIAQAABIgBAgAEiAEIAEBDgQgAQEIBiACAg4RWQUg
+AR0ICAQBAAAABCAAEmUFAAEOHQ4KIAYBCA4ODggQAgkHBQoKEmECHQ4EAAASbQUgAR0FDgYHAwsd
+BQgGBwMJHQUIBwcECQkdBQgDBhIVAwYdCAQgAQ4IBCABAggFIAIBCBwGAAESeRF9BSAAEoCBByAC
+AQ4SgIEEBwESHQYgAQERgIkIAQACAAAAAAADAAABRwEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12
+NC4wAQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRAuTkVUIEZyYW1ld29yayA0KAEAI1NDXzhlOWE5
+NjYzZDk2ZTQ1OTg5MTRlYjg1YTQ4Y2E1MzdiAAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMTMA
+AAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEAmDgAAAAAAAAAAAAArjgA
+AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKA4AAAAAAAAAABfQ29yRGxsTWFpbgBtc2NvcmVlLmRs
+bAAAAAAA/yUAIAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAA
+AFhAAACwAwAAAAAAAAAAAACwAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAA
+vQTv/gAAAQAAAAEAG2WdEwAAAQAbZZ0TPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAAB
+AFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAA
+AAAAALAEEAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAA7AIAAAEAMAAwADAAMAAw
+ADQAYgAwAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBfADgA
+ZQA5AGEAOQA2ADYAMwBkADkANgBlADQANQA5ADgAOQAxADQAZQBiADgANQBhADQAOABjAGEANQAz
+ADcAYgAAAEAADwABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgA1ADAAMgAxAC4A
+MgA1ADgAOAAzAAAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfAEEAOQA4
+ADgARAA3ADIANgAyADMANQBFADQARgA1ADQAQgBFAEUAMAAxADUAQwBGADUARQAwAEQARABGAEEA
+MQAuAGQAbABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQBy
+AGkAZwBoAHQAIABAACAAIAAyADAAMQAzAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUA
+bgBhAG0AZQAAAFMAQwBfAEEAOQA4ADgARAA3ADIANgAyADMANQBFADQARgA1ADQAQgBFAEUAMAAx
+ADUAQwBGADUARQAwAEQARABGAEEAMQAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEA
+bQBlAAAAAABTAEMAXwA4AGUAOQBhADkANgA2ADMAZAA5ADYAZQA0ADUAOQA4ADkAMQA0AGUAYgA4
+ADUAYQA0ADgAYwBhADUAMwA3AGIAAABEAA8AAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4A
+AAAxAC4AMAAuADUAMAAyADEALgAyADUAOAA4ADMAAAAAAEgADwABAEEAcwBzAGUAbQBiAGwAeQAg
+AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADUAMAAyADEALgAyADUAOAA4ADMAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAwDgAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_a988d726235e4f54bee015cf5e0ddfa1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages, Microsoft.SqlServer.VSTAScriptingLib, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum"
+                  typeConverter="NOTBROWSABLE">7ba1988016e88371051dc8efc3e9eb67</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.SqlServer.Dts.Pipeline.ScriptComponentHost, Microsoft.SqlServer.TxScript, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\scrFNV1a 1.Inputs[HashSource]"
+                  hasSideEffects="true"
+                  name="HashSource">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\scrFNV1a 1.Inputs[HashSource].Columns[DeltaHashSrc]"
+                      cachedDataType="wstr"
+                      cachedLength="1638"
+                      cachedName="DeltaHashSrc"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[DeltaHashSrc]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\scrFNV1a 1.Inputs[HashSource].Columns[BusinessKeyHashSrc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="199"
+                      cachedName="BusinessKeyHashSrc"
+                      lineageId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output].Columns[BusinessKeyHashSrc]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash]"
+                  name="OutputHash"
+                  synchronousInputId="Package\Data Flow Task\scrFNV1a 1.Inputs[HashSource]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]"
+                      dataType="i8"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[DeltaHash]"
+                      name="DeltaHash" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]"
+                      dataType="i8"
+                      lineageId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash].Columns[BusinessKeyHash]"
+                      name="BusinessKeyHash" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\SRC_WorldProvinceGeography"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_WorldProvinceGeography"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  Convert(nvarchar(100),[Location_ID])+mpl.junk as SourceKey
+      ,[ISO] as CountryCode
+      ,[ADM0] as CountryName
+      ,[ADM1] as State
+     ,Convert(Nvarchar(50),newid()) as Junk
+	 
+   FROM WorldProvinceGeography wg
+  Left Outer Join [dbo].[Multiplyer] mpl on 1=1</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Connections[OleDbConnection]"
+                  connectionManagerID="{D77C50DA-6B3C-466C-AF9A-51767CBA86BB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[DeltaHashDemoSource]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[SourceKey]"
+                      name="SourceKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryCode]"
+                      name="CountryCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[CountryName]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[CountryName]"
+                      name="CountryName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[State]"
+                      name="State"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[Junk]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[Junk]"
+                      length="50"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].Columns[Junk]"
+                      name="Junk"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[SourceKey]"
+                      dataType="wstr"
+                      length="110"
+                      name="SourceKey" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[CountryCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[CountryName]"
+                      dataType="wstr"
+                      length="255"
+                      name="CountryName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output].ExternalColumns[Junk]"
+                      dataType="wstr"
+                      length="50"
+                      name="Junk" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      dataType="wstr"
+                      length="110"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[SourceKey]"
+                      name="SourceKey" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[CountryCode]"
+                      name="CountryCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[CountryName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[CountryName]"
+                      name="CountryName" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[State]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[State]"
+                      name="State" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[Junk]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[Junk]"
+                      name="Junk" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Changed]"
+              endId="Package\Data Flow Task\DST_DimGeographyStage.Inputs[OLE DB Destination Input]"
+              name="Changed"
+              startId="Package\Data Flow Task\Conditional Split.Outputs[Changed]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\scrFNV1a 1.Inputs[HashSource]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\drvHashSrc.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
+              endId="Package\Data Flow Task\DST_DimGeography.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\Data Flow Task\LKUP_BusinessKeyHash.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\drvHashSrc.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Data Flow Task\SRC_WorldProvinceGeography.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[OutputHash]"
+              endId="Package\Data Flow Task\LKUP_BusinessKeyHash.Inputs[Lookup Input]"
+              name="OutputHash"
+              startId="Package\Data Flow Task\scrFNV1a 1.Outputs[OutputHash]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_FlushSatage"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6ac377e8-cc16-49ba-9582-c17f9f002013}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_FlushSatage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{584B1065-9F3C-4A21-985A-647B7648DAD1}"
+          SQLTask:SqlStatementSource="Truncate Table DimGeographystage" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST_UpdateStageTiLive"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b134aeee-0e18-40a4-aaed-7b5cd7eefbb3}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_UpdateStageTiLive"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{584B1065-9F3C-4A21-985A-647B7648DAD1}"
+          SQLTask:SqlStatementSource="UPDATE dbo.DimGeography SET&#xA; SourceKey = bpSrc.SourceKey&#xA; , CountryCode= bpSrc.CountryCode &#xA; , CountryName= bpSrc.CountryName &#xA; , State= bpSrc.State &#xA; , BusinessKeyHash= bpSrc.BusinessKeyHash &#xA; , DeltaHash= bpSrc.DeltaHash &#xA; FROM [dbo].DimGeography bp&#xA; INNER JOIN DimGeographystage bpSrc&#xA; on bp.BusinessKeyHash = bpSrc.BusinessKeyHash" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8A066ED2-7149-4221-A3D2-C8419CB894EE}"
+      DTS:From="Package\EST_FlushSatage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DF8DD202-B1C2-4141-A17C-F02C183082B0}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EST_UpdateStageTiLive" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="25.5,107.5" />
+        <NodeLayout
+          Size="160,42"
+          Id="Package\EST_FlushSatage"
+          TopLeft="20.5,5.5" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\EST_UpdateStageTiLive"
+          TopLeft="5.50000000000003,209.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="100.75,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="101,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Data Flow Task\drvHashSrc"
+          TopLeft="288.6,60" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Data Flow Task\scrFNV1a 1"
+          TopLeft="288.6,161.6" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Data Flow Task\LKUP_BusinessKeyHash"
+          TopLeft="259.4,263.199999999999" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Data Flow Task\Conditional Split"
+          TopLeft="272,368.799999999999" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Data Flow Task\SRC_WorldProvinceGeography"
+          TopLeft="19,48.799999999999" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="241,69.799999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="47.6,11.200000000001"
+              Start="0,0"
+              End="40.1,11.200000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="19.8,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.8,0"
+                    Point2="23.8,0"
+                    Point3="23.8,4" />
+                  <mssgle:LineSegment
+                    End="23.8,7.20000000000101" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.8,7.20000000000101"
+                    Point2="23.8,11.200000000001"
+                    Point3="27.8,11.200000000001" />
+                  <mssgle:LineSegment
+                    End="40.1,11.200000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="354.6,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.6"
+              Start="0,0"
+              End="0,52.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OutputHash]"
+          TopLeft="354.5,203.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.599999999999"
+              Start="0,0"
+              End="0,52.099999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.099999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="351.95,305.199999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.6"
+              Start="0,0"
+              End="0,56.1">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.1" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,22.2453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Data Flow Task\DST_DimGeographyStage"
+          TopLeft="36,397" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Changed]"
+          TopLeft="272,389.799999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35,28.200000000001"
+              Start="0,0"
+              End="-27.5,28.200000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-13.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.5,0"
+                    Point2="-17.5,0"
+                    Point3="-17.5,4" />
+                  <mssgle:LineSegment
+                    End="-17.5,24.200000000001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.5,24.200000000001"
+                    Point2="-17.5,28.200000000001"
+                    Point3="-21.5,28.200000000001" />
+                  <mssgle:LineSegment
+                    End="-27.5,28.200000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-37.3755078125,-17.6630859375,39.751015625,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Data Flow Task\DST_DimGeography"
+          TopLeft="585,344" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
+          TopLeft="384.733333333333,305.199999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="287.266666666667,38.800000000001"
+              Start="0,0"
+              End="287.266666666667,31.300000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.7144050104388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.7144050104388"
+                    Point2="0,15.7144050104388"
+                    Point3="4,15.7144050104388" />
+                  <mssgle:LineSegment
+                    End="283.266666666667,15.7144050104388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="283.266666666667,15.7144050104388"
+                    Point2="287.266666666667,15.7144050104388"
+                    Point3="287.266666666667,19.7144050104388" />
+                  <mssgle:LineSegment
+                    End="287.266666666667,31.300000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="87.8269466145834,20.7144050104388,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\LKUP_BusinessKeyHash">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\SRC_WorldProvinceGeography">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DST_DimGeographyStage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\DST_DimGeography">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

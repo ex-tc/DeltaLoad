@@ -1,0 +1,70 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/1/2013 8:59:36 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ANDREASYBNB001"
+  DTS:CreatorName="AndreasYBNB001\Andreasb"
+  DTS:DTSID="{F657FB40-F87B-4729-A93F-6649733EE434}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.2100.60"
+  DTS:LocaleID="7177"
+  DTS:ObjectName="TSQLLoad"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{109DB869-786F-476E-824C-7082436C4927}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.TSQLDestination]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5D6F13FD-7250-4DE1-A3ED-161F75AF5F95}"
+      DTS:ObjectName="LocalHost.TSQLDestination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=TSQLDestination;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EST_TSQLLoad"
+      DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DC04FFCD-7BB9-497B-8109-A27596640B5C}"
+      DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.ExecuteSQLTask.ExecuteSQLTask, Microsoft.SqlServer.SQLTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST_TSQLLoad"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5D6F13FD-7250-4DE1-A3ED-161F75AF5F95}"
+          SQLTask:SqlStatementSource="&#xA;Truncate Table [dbo].[DimGeographyStage]&#xA;go&#xA;Select x.* Into #tt1 from (&#xA;SELECT  Convert(nvarchar(100),[Location_ID]) as SourceKey&#xA;      ,[ISO] as CountryCode&#xA;      ,[ADM0] as CountryName&#xA;      ,[ADM1] as State&#xA;      ,Convert(BIGINT,HASHBYTES('SHA1',Convert(nvarchar(100),[Location_ID]+mpl.junk))) as BusinessKeyHash&#xA;&#x9;  ,Convert(BIGINT,HASHBYTES('SHA1',Convert(nvarchar(100),newid()))) as DeltaHash&#xA;&#x9; &#xA;  FROM [DeltaHashDemoSource].dbo.WorldProvinceGeography wg&#xA;  Left Outer Join [DeltaHashDemoSource].[dbo].[Multiplyer] mpl on 1=1) as X&#xA;&#xA;  Insert Into [dbo].[DimGeographyStage]([SourceKey]&#xA;      ,[CountryCode]&#xA;      ,[CountryName]&#xA;      ,[State]&#xA;      ,[BusinessKeyHash]&#xA;      ,[DeltaHash])&#xA;  Select tt.[SourceKey]&#xA;      ,tt.[CountryCode]&#xA;      ,tt.[CountryName]&#xA;      ,tt.[State]&#xA;      ,tt.[BusinessKeyHash]&#xA;      ,tt.[DeltaHash] from #tt1 as TT &#xA;&#x9;  Where tt.BusinessKeyHash in (Select BusinessKeyHash from [dbo].[DimGeography] )&#xA;  go&#xA;  Insert Into [dbo].[DimGeography]&#xA;  Select * from #tt1 as TT &#xA;  Where tt.BusinessKeyHash not in (Select BusinessKeyHash from [dbo].[DimGeography] )&#xA;  go&#xA;  UPDATE dbo.DimGeography SET&#xA; SourceKey = bpSrc.SourceKey&#xA; , CountryCode= bpSrc.CountryCode &#xA; , CountryName= bpSrc.CountryName &#xA; , State= bpSrc.State &#xA; , BusinessKeyHash= bpSrc.BusinessKeyHash &#xA; , DeltaHash= bpSrc.DeltaHash &#xA; FROM [dbo].DimGeography bp&#xA; INNER JOIN DimGeographystage bpSrc&#xA; on bp.BusinessKeyHash = bpSrc.BusinessKeyHash&#xA;Go&#xA;Truncate Table [dbo].[DimGeographyStage]&#xA;&#xA;  Drop Table #tt1" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\EST_TSQLLoad"
+          TopLeft="62,68" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
