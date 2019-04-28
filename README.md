@@ -4,6 +4,8 @@
 2. Open The [Visual Studio Solution](https://github.com/ex-tc/DeltaLoad/tree/master/HashingDemo_VisualStudio)
 
 
+Video availabele Here[ https://youtu.be/z-VmlIvkXmI]( https://youtu.be/z-VmlIvkXmI)
+
 
 
 
